@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Circuitos Lógicos</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+    }
+
+    .menu {
+        width: 250px;
+        background-color: #1e293b;
+        height: 100vh;
+        padding-top: 20px;
+    }
+
+    .menu h2 {
+        color: white;
+        text-align: center;
+    }
+
+    .menu button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        background: none;
+        color: white;
+        text-align: left;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .menu button:hover {
+        background-color: #334155;
+    }
+
+    .conteudo {
+        flex: 1;
+        padding: 20px;
+    }
+
+    .secao {
+        display: none;
+    }
+
+    .ativa {
+        display: block;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 6px 12px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #e2e8f0;
+    }
+
+.grade-3x3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    gap: 20px; /* espaço entre imagens */
+}
+
+
+.img-porta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f8fafc;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+
+    height: 180px; /* altura fixa para sincronizar */
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.img-porta img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.img-porta p {
+    margin: 0;
+    font-weight: bold;
+}
+.portas_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+
+.porta {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    text-align: center;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+
+.porta h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+
+.porta table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+.porta th, .porta td {
+    border: 1px solid black;
+    padding: 4px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.porta th {
+    background-color: #e2e8f0;
+}
+</style>
+<script>
+function mostrarSecao(id) {
+    var secoes = document.querySelectorAll(".secao");
+    secoes.forEach(secao => {
+        secao.classList.remove("ativa");
+    });
+
+    document.getElementById(id).classList.add("ativa");
+}
+
+function enviarFeedback(event) {
+    event.preventDefault();
+    const nome = document.getElementById('nome').value;
+    const mensagem = document.getElementById('mensagem').value;
+
+    document.getElementById('resposta').innerHTML =
+        `Obrigado pelo feedback, <strong>${nome}</strong>!<br>` +
+        `Sua mensagem: "${mensagem}"`;
+
+    document.getElementById('nome').value = '';
+    document.getElementById('mensagem').value = '';
+}
+</script>
+
+<script>
+function mostrarSecao(id) {
+    var secoes = document.querySelectorAll(".secao");
+    secoes.forEach(secao => {
+        secao.classList.remove("ativa");
+    });
+
+    document.getElementById(id).classList.add("ativa");
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="menu">
+    <h2>Menu</h2>
+    <button onclick="mostrarSecao('introducao')">INDROTUÇÃO</button>
+    <button onclick="mostrarSecao('o_que_e')">O QUE É</button>
+    <button onclick="mostrarSecao('como_funciona')">COMO FUNCIONA</button>
+    <button onclick="mostrarSecao('porque_importantes')">PORQUE SÃO IMPORTANTES</button>
+    <button onclick="mostrarSecao('portas')">PORTAS LOGICAS</button>
+    <button onclick="mostrarSecao('aplicacoes')">APLICAÇÕES</button>
+    <button onclick="mostrarSecao('imagens')">IMAGENS</button>
+    <button onclick="mostrarSecao('feedback')">FEEDBACK</button>
+
+    
+   
+    
+</div>
+
+<div class="conteudo">
+
+    <div id="introducao" class="secao ativa">
+        <h1>Introdução</h1>
+        <p>
+           Os circuitos lógicos fazem parte da eletrônica digital, área responsável pelo funcionamento de praticamente toda a tecnologia moderna, como computadores, celulares, videogames e sistemas de automação.
+
+           Diferente da eletrônica analógica — onde os sinais podem assumir qualquer valor dentro de uma faixa — na eletrônica digital os sinais trabalham com apenas dois níveis bem definidos:
+
+           0 (zero) → ausência de sinal ou nível baixo
+
+           1 (um) → presença de sinal ou nível alto
+
+           Esses dois valores formam o sistema binário, que é a linguagem básica dos dispositivos digitais.
+        </p>
+    </div>
+
+  <div id="portas" class="secao">
+    <div class="portas_container">
+     
+    <div class="porta">
+    <h4>AND</h4>
+    <p>S = A · B</p>
+    <table>
+      <tr><th>A</th><th>B</th><th>S</th></tr>
+      <tr><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>1</td><td>1</td><td>1</td></tr>
+    </table>
+  </div>
+
+  <div class="porta">
+    <h4>OR</h4>
+    <p>S = A + B</p>
+    <table>
+      <tr><th>A</th><th>B</th><th>S</th></tr>
+      <tr><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>1</td><td>1</td></tr>
+      <tr><td>1</td><td>0</td><td>1</td></tr>
+      <tr><td>1</td><td>1</td><td>1</td></tr>
+    </table>
+  </div>
+
+  <div class="porta">
+    <h4>NOT</h4>
+    <p>S = 'A'</p>
+    <table>
+      <tr><th>A</th><th>S</th></tr>
+      <tr><td>0</td><td>1</td></tr>
+      <tr><td>1</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="porta">
+    <h4>NAND</h4>
+    <p>S = '(A · B)'</p>
+    <table>
+      <tr><th>A</th><th>B</th><th>S</th></tr>
+      <tr><td>0</td><td>0</td><td>1</td></tr>
+      <tr><td>0</td><td>1</td><td>1</td></tr>
+      <tr><td>1</td><td>0</td><td>1</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="porta">
+    <h4>NOR</h4>
+    <p>S = '(A + B)'</p>
+    <table>
+      <tr><th>A</th><th>B</th><th>S</th></tr>
+      <tr><td>0</td><td>0</td><td>1</td></tr>
+      <tr><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="porta">
+    <h4>XOR</h4>
+    <p>S = AB' + 'AB</p>
+    <table>
+      <tr><th>A</th><th>B</th><th>S</th></tr>
+      <tr><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>0</td><td>1</td><td>1</td></tr>
+      <tr><td>1</td><td>0</td><td>1</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td></tr>
+    </table>
+     </div>
+     <ul> AS ASPAS NAS EXPRESSÕES SÃO OS BARRADOS</ul>
+       <ul>
+            <li><strong>AND</strong> – Verdadeiro apenas se todas entradas forem 1.</li>
+            <li><strong>OR</strong> – Verdadeiro se pelo menos uma entrada for 1.</li>
+            <li><strong>NOT</strong> – Inverte o valor.</li>
+            <li><strong>NAND</strong>, <strong>NOR</strong>, <strong>XOR</strong></li>
+        </ul>
+    </div>
+   </div>
+
+     <div id="aplicacoes" class="secao">
+        <h1>Aplicações</h1>
+        <p>
+            Aplicações dos Circuitos Lógicos
+
+Os circuitos lógicos estão presentes em praticamente toda a tecnologia digital atual. Eles permitem que dispositivos processem informações, tomem decisões automáticas e executem tarefas com rapidez e precisão.
+
+1. Computadores e Processadores
+
+Os computadores funcionam graças a circuitos lógicos organizados dentro do processador (CPU).
+
+Exemplo:
+
+A Unidade Lógica e Aritmética (ULA) realiza operações como soma, subtração e comparações.
+
+O processador executa bilhões de operações lógicas por segundo.
+
+Empresas como Intel e AMD fabricam processadores com bilhões de transistores que formam circuitos lógicos extremamente complexos.
+
+2. Smartphones e Dispositivos Eletrônicos
+
+Celulares, tablets e smart TVs utilizam circuitos lógicos para:
+
+Processar dados
+
+Executar aplicativos
+
+Controlar tela, câmera e sensores
+
+Gerenciar conexão com internet
+
+Tudo o que acontece dentro do aparelho depende de decisões feitas por circuitos digitais.
+
+3. Sistemas de Automação
+
+Na indústria, circuitos lógicos são usados em:
+
+Controle de máquinas
+
+Sistemas de segurança
+
+Sensores automáticos
+
+Portões eletrônicos
+
+Exemplo:
+Se sensor detectar objeto → máquina para automaticamente.
+
+4. Sistemas de Comunicação
+
+Redes digitais, como a internet, funcionam com base em sinais binários processados por circuitos lógicos.
+
+Equipamentos como roteadores e modems realizam decisões lógicas para enviar dados ao destino correto.
+
+5. Jogos Eletrônicos e Consoles
+
+Consoles como PlayStation 5 e Xbox Series X possuem processadores formados por milhões de circuitos lógicos que:
+
+Processam gráficos
+
+Controlam física do jogo
+
+Gerenciam inteligência artificial
+
+6. Sistemas de Segurança
+
+Alarmes residenciais
+
+Câmeras digitais
+
+Leitores biométricos
+
+Fechaduras eletrônicas
+
+Todos utilizam circuitos lógicos para tomar decisões com base em entradas (senha correta, digital válida, movimento detectado).
+        </p>
+      </div>
+     <div id="o_que_e" class="secao">
+	 <h1> O que é </h1>
+	  <p>
+	O que é um Circuito Lógico?
+
+        Um circuito lógico é um conjunto de componentes eletrônicos (como transistores) organizados para realizar operações baseadas na lógica matemática.
+
+        Ele recebe entradas, processa essas informações de acordo com uma regra lógica e gera uma saída.
+
+        Podemos pensar assim:
+
+        Entrada → Processamento lógico → Saída
+
+        Por exemplo:
+
+        Um sensor detecta movimento (entrada).
+
+        O circuito lógico processa essa informação.
+
+        Uma lâmpada acende (saída).
+         </p>
+     </div>
+    <div id="como_funciona" class="secao">
+           <h1>como funciona</h1>
+          <p>
+        Como Funcionam na Prática?
+
+        Fisicamente, os circuitos lógicos são construídos com transistores, que funcionam como interruptores eletrônicos.
+
+        Se houver tensão elétrica → representa 1
+
+        Se não houver tensão → representa 0
+
+        Milhões ou até bilhões de transistores são integrados em um único chip, como acontece nos processadores modernos.
+          </p>
+      </div>
+
+      <div id="porque_importantes" class="secao">
+        <h1>porque são importantes</h1>
+        <p>
+      Por que são importantes?
+
+      Sem circuitos lógicos não existiriam:
+
+      Computadores
+
+      Memórias digitais
+
+      Processadores
+
+      Sistemas embarcados
+
+      Redes de comunicação digital
+
+      Eles permitem que máquinas tomem decisões automáticas, façam cálculos, armazenem dados e executem programas.
+       </p> 
+     </div>
+   
+   <div id="feedback" class="secao">
+    <h1>Feedback</h1>
+    <p>Deixe sua mensagem ou dúvida sobre circuitos lógicos:</p>
+    <form onsubmit="enviarFeedback(event)" style="max-width: 500px; margin: auto;">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required style="width: 100%; box-sizing: border-box;">
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" rows="4" required style="width: 100%; box-sizing: border-box;"></textarea>
+
+        <button type="submit" style="width: 100%;">Enviar</button>
+    </form>
+    <div id="resposta" style="margin-top: 15px; color: green; font-weight: bold; text-align: center;"></div>
+</div>
+  
+<div id="imagens" class="secao">
+    <h1>Imagens das Portas Lógicas</h1>
+    <div class="grade-3x3">
+        <div class="img-porta">
+            <img src="https://th.bing.com/th/id/OIP.A7F_EF4x0HntbOKZmGj_3wHaEo?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Porta AND">
+            <p>AND</p>
+        </div>
+        <div class="img-porta">
+            <img src="https://tse1.mm.bing.net/th/id/OIP.4x-GuLnpOeJJhZiHslHUCAAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Porta OR">
+            <p>OR</p>
+        </div>
+        <div class="img-porta">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.H1WXq7jFUKcHkyDHIENETgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Porta NOT">
+            <p>NOT</p>
+        </div>
+        <div class="img-porta">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.0USpT0HCQrMS4ryVjpMQqwAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Porta NAND">
+            <p>NAND</p>
+        </div>
+        <div class="img-porta">
+           
+            <img src="https://www.electronica-pt.com/images/2_18_2_4.png" alt="Porta NOR">
+            <p>NOR</p>
+        </div>
+        <div class="img-porta">
+           
+            <img src="https://media.licdn.com/dms/image/v2/D4D12AQHcAlug-gCGwg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1711910821870?e=2147483647&v=beta&t=N6kOhJay-hdmNOd5d36utZ6oE4Mb9L9xZD97FfLta5w" alt="Porta XOR">
+            <p>XOR</p>
+        </div>
+    
+    </div>
+</div>
+</body>
+</html>
